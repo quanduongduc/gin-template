@@ -1,0 +1,16 @@
+FROM golang:1.22.5-alpine
+
+WORKDIR /app
+
+COPY go.mod go.sum ./
+
+RUN apk update && apk add --no-cache gcc libc-dev make lsof
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
+RUN go install github.com/air-verse/air@latest
+
+COPY . .
+
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup \
+    && chown -R appuser:appgroup /app
+    
+CMD ["make", "start-debug"]

@@ -5,8 +5,8 @@ testdata_dir = "testdata"
 [build]
   args_bin = []
   cmd = "make build-debug"
-  bin = "./bin/my-app-debug"
-  full_bin = "dlv exec ./bin/my-app-debug --listen=127.0.0.1:2345 --headless=true --api-version=2 --accept-multiclient --continue --log -- "
+  bin = "./bin/api-debug"
+  full_bin = "dlv exec ./bin/api-debug --listen=:2345 --headless=true --api-version=2 --accept-multiclient --continue --log -- "
   exclude_dir = ["assets", "tmp", "vendor", "testdata", "templates", "tests"]
   exclude_file = []
   exclude_regex = ["_test.go"]

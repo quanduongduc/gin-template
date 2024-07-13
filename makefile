@@ -1,12 +1,14 @@
-# the name of the binary when built
-BINARY_NAME=my-app
-
-# remove any binaries that are built
 clean:
-	rm -f ./bin/$(BINARY_NAME)*
+	/bin/sh ./scripts/clean.sh
 
 build-debug: clean
-	CGO_ENABLED=0 go build -gcflags=all="-N -l" -o bin/$(BINARY_NAME)-debug cmd/main.go
+	/bin/sh ./scripts/build-debug.sh
 
-start-dev:
-	bash ./scripts/start-dev.sh
+start-debug: clean
+	/bin/sh ./scripts/start-debug.sh
+
+build: clean
+	/bin/sh ./scripts/build.sh
+
+start: clean
+	/bin/sh ./scripts/start.sh
